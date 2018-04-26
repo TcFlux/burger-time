@@ -10,7 +10,7 @@ BurgerBarrage.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
     this.load.tilemap('map', 'assets/tilemaps/Map.json', null, Phaser.Tilemap.TILED_JSON)
-    this.load.image('gameTiles', 'assets/tilemaps/tiles.tsx')
+    this.load.image('gameTiles', 'assets/LPC_house_interior/interior.png')
     this.load.image('cheese', 'assets/images/cheese.png')
     this.load.image('lettuce', 'assets/images/lettuce.png')
     this.load.image('ketchup', 'assets/images/ketchup.png')

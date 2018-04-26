@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="53">
- <tileset firstgid="1" source="tilemaps/tiles.tsx"/>
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="LPC_house_interior/interior.png" width="512" height="512"/>
+ </tileset>
  <layer name="backgroundLayer" width="20" height="15">
   <data encoding="csv">
 20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
@@ -20,7 +22,7 @@
 0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0
 </data>
  </layer>
- <layer name="blockingLayer" width="20" height="15">
+ <layer name="blockedLayer" width="20" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,123,123,123,123,0,0,60,0,0,0,0,0,0,0,
 54,54,54,54,54,54,138,138,138,138,54,54,92,54,54,54,54,54,54,54,
