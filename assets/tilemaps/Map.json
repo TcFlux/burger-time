@@ -29,7 +29,7 @@
          "objects":[
                 {
                  "gid":20,
-                 "height":64,
+                 "height":66,
                  "id":38,
                  "name":"hole",
                  "properties":
@@ -43,9 +43,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":false,
-                 "width":64,
-                 "x":288,
-                 "y":287
+                 "width":66,
+                 "x":298,
+                 "y":288
                 }, 
                 {
                  "gid":103,

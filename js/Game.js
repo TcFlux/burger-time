@@ -13,16 +13,23 @@ BurgerBarrage.Game.prototype = {
     this.map.setCollisionBetween(1, 200, true, 'blockedLayer');
     this.backgroundLayer.resizeWorld();
     this.inventory = {};
+    //create items
     this.createItems()
     
+    //create hole
+    const holeObj = this.findObjectsByType('hole', this.map, 'objectsLayer');
+    this.hole = this.game.add.sprite(holeObj[0].x - 12, holeObj[0].y - 34, 'hole');
+    this.game.physics.arcade.enable(this.hole);
+    console.log(this.hole);
+
     //player
-    var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
-    this.player = this.game.add.sprite(result[0].x, result[0].y, 'player');
+    const playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
+    this.player = this.game.add.sprite(playerObj[0].x, playerObj[0].y, 'player');
     this.game.physics.arcade.enable(this.player);
     
+    //player  controls
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.cursors.space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    console.log(this.cursors)
   },
   createItems: function() {
     //create items
@@ -72,8 +79,11 @@ BurgerBarrage.Game.prototype = {
     }
     //player collision
     this.game.physics.arcade.collide(this.player, this.blockedLayer);
+    //Pickup items
     this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
-    },
+    //drop burger in hole
+    this.game.physics.arcade.overlap(this.player, this.hole, this.dropBurger, null, this);
+  },
     collect: function(player, item){
       const name = item.key;
       if (!this.inventory[name]) {
@@ -81,5 +91,9 @@ BurgerBarrage.Game.prototype = {
         console.log('INVENTORY', this.inventory)
         item.destroy();
       }
+    },
+    dropBurger: function(player, hole){
+      //
+      console.log("nc")
     }
 };
