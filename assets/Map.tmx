@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="59">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="22" height="17" tilewidth="32" tileheight="32" infinite="0" nextobjectid="83">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="LPC_house_interior/interior.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="257" source="tilemaps/tiles.tsx"/>
- <layer name="backgroundLayer" width="20" height="15">
+ <layer name="backgroundLayer" width="22" height="17">
   <data encoding="csv">
-20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
-108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,
-0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0
+49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,20,20,
+108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,108,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+0,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,0,20,20,
+20,20,20,20,20,20,20,20,20,183,183,20,20,20,20,20,20,20,20,20,20,20,
+20,20,20,20,20,20,20,20,20,183,183,20,20,20,20,20,20,20,20,20,20,20
 </data>
  </layer>
- <layer name="blockedLayer" width="20" height="15">
+ <layer name="blockedLayer" width="22" height="17">
   <data encoding="csv">
-0,0,0,0,0,0,123,123,123,123,0,0,60,0,0,0,0,0,0,0,
-54,54,54,54,54,54,138,138,138,138,54,54,92,54,54,54,54,54,54,54,
-55,86,86,86,86,86,156,156,156,156,86,86,86,86,86,86,86,86,86,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,3,5,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,35,37,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,
-55,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,55
+0,0,0,0,0,0,123,123,123,123,0,0,60,0,0,0,0,0,0,0,0,0,
+54,54,54,54,54,54,138,138,138,138,54,54,92,54,54,54,54,54,54,54,0,0,
+55,86,86,86,86,86,156,156,156,156,86,86,86,86,86,86,86,86,86,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,3,5,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,35,37,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,
+55,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,52,55,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup name="objectsLayer">
@@ -90,7 +93,7 @@
     <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="51" name="lettuce" gid="6" x="353" y="476" width="32" height="32">
+  <object id="51" name="lettuce" gid="6" x="353" y="474" width="32" height="32">
    <properties>
     <property name="sprite" value="lettuce"/>
     <property name="type" value="item"/>
@@ -107,11 +110,89 @@
     <property name="type" value="playerStart"/>
    </properties>
   </object>
-  <object id="57" name="stove" gid="412" x="191.453" y="98.3373" width="128" height="32">
+  <object id="60" name="bun" gid="103" x="657.214" y="49.1786" width="32" height="32">
    <properties>
+    <property name="sprite" value="bun"/>
+    <property name="type" value="goalIcon"/>
+   </properties>
+  </object>
+  <object id="61" name="cookedMeat" gid="25" x="658.107" y="96.3214" width="32" height="32">
+   <properties>
+    <property name="sprite" value="cookedMeat"/>
+    <property name="type" value="goalIcon"/>
+   </properties>
+  </object>
+  <object id="62" name="cheese" gid="42" x="658.107" y="143.464" width="32" height="32">
+   <properties>
+    <property name="sprite" value="cheese"/>
+    <property name="type" value="goalIcon"/>
+   </properties>
+  </object>
+  <object id="63" name="lettuce" gid="6" x="659" y="190.607" width="32" height="32">
+   <properties>
+    <property name="sprite" value="lettuce"/>
+    <property name="type" value="goalIcon"/>
+   </properties>
+  </object>
+  <object id="64" name="ketchup" gid="27" x="659" y="237.75" width="32" height="32">
+   <properties>
+    <property name="sprite" value="ketchup"/>
+    <property name="type" value="goalIcon"/>
+   </properties>
+  </object>
+  <object id="70" name="bun" gid="103" x="15.2499" y="530.429" width="32" height="32">
+   <properties>
+    <property name="sprite" value="bun"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
+  <object id="71" name="uncookedMeat" gid="25" x="65.25" y="530.428" width="32" height="32">
+   <properties>
+    <property name="sprite" value="uncookedMeat"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
+  <object id="72" name="cheese" gid="42" x="117.929" y="531.321" width="32" height="32">
+   <properties>
+    <property name="sprite" value="cheese"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
+  <object id="73" name="lettuce" gid="6" x="168.822" y="531.321" width="32" height="32">
+   <properties>
+    <property name="sprite" value="lettuce"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
+  <object id="74" name="ketchup" gid="27" x="221.5" y="530.429" width="32" height="32">
+   <properties>
+    <property name="sprite" value="ketchup"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
+  <object id="75" name="stove" gid="156" x="191.915" y="98.9273" width="128" height="32">
+   <properties>
+    <property name="sprite" value="stove"/>
     <property name="type" value="stove"/>
    </properties>
   </object>
-  <object id="58" gid="257" x="606.752" y="128.765" width="32" height="32"/>
+  <object id="79" name="cookingBar" gid="9" x="233.224" y="55.1381" width="32" height="32">
+   <properties>
+    <property name="sprite" value="cookingBar"/>
+    <property name="type" value="cookingBar"/>
+   </properties>
+  </object>
+  <object id="80" name="trash" gid="1" x="604.811" y="128.566" width="32" height="32">
+   <properties>
+    <property name="sprite" value="trash"/>
+    <property name="type" value="trash"/>
+   </properties>
+  </object>
+  <object id="82" name="cookedMeat" gid="25" x="65.2922" y="525.875" width="32" height="32">
+   <properties>
+    <property name="sprite" value="cookedMeat"/>
+    <property name="type" value="inventoryIcon"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
