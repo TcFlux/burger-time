@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="53">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="54">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="LPC_house_interior/interior.png" width="512" height="512"/>
  </tileset>
@@ -47,43 +47,63 @@
     <property name="type" value="hole"/>
    </properties>
   </object>
-  <object id="41" name="bread" gid="103" x="607" y="228" width="32" height="32">
+  <object id="41" name="bun" gid="103" x="603" y="228" width="32" height="32">
    <properties>
-    <property name="sprite" value="bread"/>
-    <property name="type" value="bread"/>
+    <property name="sprite" value="bun"/>
+    <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="42" name="bread" gid="103" x="607" y="288" width="32" height="32">
+  <object id="42" name="bun" gid="103" x="603" y="288" width="32" height="32">
    <properties>
-    <property name="sprite" value="bread"/>
-    <property name="type" value="bread"/>
+    <property name="sprite" value="bun"/>
+    <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="43" name="bread" gid="103" x="608" y="257" width="32" height="32">
+  <object id="43" name="bun" gid="103" x="604" y="257" width="32" height="32">
    <properties>
-    <property name="sprite" value="bread"/>
-    <property name="type" value="bread"/>
+    <property name="sprite" value="bun"/>
+    <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="45" name="uncookedMeat" gid="25" x="0" y="161" width="32" height="32"/>
-  <object id="48" name="uncookedMeat" gid="25" x="0" y="192" width="32" height="32"/>
-  <object id="49" name="uncookedMeat" gid="25" x="0" y="225" width="32" height="32"/>
-  <object id="50" name="ketchup" gid="27" x="512" y="485" width="32" height="32">
+  <object id="45" name="uncookedMeat" gid="25" x="5" y="161" width="32" height="32">
+   <properties>
+    <property name="sprite" value="uncookedMeat"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="48" name="uncookedMeat" gid="25" x="5" y="192" width="32" height="32">
+   <properties>
+    <property name="sprite" value="uncookedMeat"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="49" name="uncookedMeat" gid="25" x="5" y="225" width="32" height="32">
+   <properties>
+    <property name="sprite" value="uncookedMeat"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="50" name="ketchup" gid="27" x="512" y="477" width="32" height="32">
    <properties>
     <property name="sprite" value="ketchup"/>
-    <property name="type" value="ketchup"/>
+    <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="51" name="lettuce" gid="6" x="353" y="485" width="32" height="32">
+  <object id="51" name="lettuce" gid="6" x="353" y="476" width="32" height="32">
    <properties>
     <property name="sprite" value="lettuce"/>
-    <property name="type" value="lettuce"/>
+    <property name="type" value="item"/>
    </properties>
   </object>
-  <object id="52" name="cheese" gid="42" x="1" y="353" width="32" height="32">
+  <object id="52" name="cheese" gid="42" x="6" y="353" width="32" height="32">
    <properties>
     <property name="sprite" value="cheese"/>
-    <property name="type" value="cheese"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="53" name="playerStart" gid="163" x="318" y="352" width="32" height="32">
+   <properties>
+    <property name="type" value="playerStart"/>
    </properties>
   </object>
  </objectgroup>

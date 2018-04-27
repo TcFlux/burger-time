@@ -51,11 +51,11 @@
                  "gid":103,
                  "height":32,
                  "id":41,
-                 "name":"bread",
+                 "name":"bun",
                  "properties":
                     {
-                     "sprite":"bread",
-                     "type":"bread"
+                     "sprite":"bun",
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -66,18 +66,18 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":607,
+                 "x":603,
                  "y":228
                 }, 
                 {
                  "gid":103,
                  "height":32,
                  "id":42,
-                 "name":"bread",
+                 "name":"bun",
                  "properties":
                     {
-                     "sprite":"bread",
-                     "type":"bread"
+                     "sprite":"bun",
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -88,18 +88,18 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":607,
+                 "x":603,
                  "y":288
                 }, 
                 {
                  "gid":103,
                  "height":32,
                  "id":43,
-                 "name":"bread",
+                 "name":"bun",
                  "properties":
                     {
-                     "sprite":"bread",
-                     "type":"bread"
+                     "sprite":"bun",
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -110,7 +110,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":608,
+                 "x":604,
                  "y":257
                 }, 
                 {
@@ -118,11 +118,21 @@
                  "height":32,
                  "id":45,
                  "name":"uncookedMeat",
+                 "properties":
+                    {
+                     "sprite":"uncookedMeat",
+                     "type":"item"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":0,
+                 "x":5,
                  "y":161
                 }, 
                 {
@@ -130,11 +140,21 @@
                  "height":32,
                  "id":48,
                  "name":"uncookedMeat",
+                 "properties":
+                    {
+                     "sprite":"uncookedMeat",
+                     "type":"item"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":0,
+                 "x":5,
                  "y":192
                 }, 
                 {
@@ -142,11 +162,21 @@
                  "height":32,
                  "id":49,
                  "name":"uncookedMeat",
+                 "properties":
+                    {
+                     "sprite":"uncookedMeat",
+                     "type":"item"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":0,
+                 "x":5,
                  "y":225
                 }, 
                 {
@@ -157,7 +187,7 @@
                  "properties":
                     {
                      "sprite":"ketchup",
-                     "type":"ketchup"
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -169,7 +199,7 @@
                  "visible":true,
                  "width":32,
                  "x":512,
-                 "y":485
+                 "y":477
                 }, 
                 {
                  "gid":6,
@@ -179,7 +209,7 @@
                  "properties":
                     {
                      "sprite":"lettuce",
-                     "type":"lettuce"
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -191,7 +221,7 @@
                  "visible":true,
                  "width":32,
                  "x":353,
-                 "y":485
+                 "y":476
                 }, 
                 {
                  "gid":42,
@@ -201,7 +231,7 @@
                  "properties":
                     {
                      "sprite":"cheese",
-                     "type":"cheese"
+                     "type":"item"
                     },
                  "propertytypes":
                     {
@@ -212,8 +242,28 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1,
+                 "x":6,
                  "y":353
+                }, 
+                {
+                 "gid":163,
+                 "height":32,
+                 "id":53,
+                 "name":"playerStart",
+                 "properties":
+                    {
+                     "type":"playerStart"
+                    },
+                 "propertytypes":
+                    {
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":318,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -221,7 +271,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":53,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
