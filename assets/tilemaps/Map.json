@@ -264,6 +264,26 @@
                  "width":32,
                  "x":318,
                  "y":352
+                }, 
+                {
+                 "gid":412,
+                 "height":32,
+                 "id":57,
+                 "name":"stove",
+                 "properties":
+                    {
+                     "type":"stove"
+                    },
+                 "propertytypes":
+                    {
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":191.453474294289,
+                 "y":98.3373493975904
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -271,7 +291,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":54,
+ "nextobjectid":58,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
@@ -289,6 +309,10 @@
          "tilecount":256,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "firstgid":257,
+         "source":"tiles.tsx"
         }],
  "tilewidth":32,
  "type":"map",

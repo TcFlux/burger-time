@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="54">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="58">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="LPC_house_interior/interior.png" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="257" source="tilemaps/tiles.tsx"/>
  <layer name="backgroundLayer" width="20" height="15">
   <data encoding="csv">
 20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,
@@ -104,6 +105,11 @@
   <object id="53" name="playerStart" gid="163" x="318" y="352" width="32" height="32">
    <properties>
     <property name="type" value="playerStart"/>
+   </properties>
+  </object>
+  <object id="57" name="stove" gid="412" x="191.453" y="98.3373" width="128" height="32">
+   <properties>
+    <property name="type" value="stove"/>
    </properties>
   </object>
  </objectgroup>
