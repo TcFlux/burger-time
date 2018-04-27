@@ -29,8 +29,8 @@ BurgerBarrage.Game.prototype = {
     this.backgroundLayer.resizeWorld();
     //points
     this.points = 0;
+
     //initialize inventory
-    
     this.inventory = {...startingInventory};
     //create items
     this.createItems();
@@ -75,7 +75,6 @@ BurgerBarrage.Game.prototype = {
     const holeObj = this.findObjectsByType('hole', this.map, 'objectsLayer');
     this.hole = this.game.add.sprite(holeObj[0].x - 12, holeObj[0].y - 34, 'hole');
     this.game.physics.arcade.enable(this.hole);
-    console.log("HOLY MOLY", this.hole);
   },
   createItems: function() {
     //create items
