@@ -284,6 +284,28 @@
                  "width":128,
                  "x":191.453474294289,
                  "y":98.3373493975904
+                }, 
+                {
+                 "gid":257,
+                 "height":32,
+                 "id":58,
+                 "name":"trash",
+                 "properties":
+                    {
+                     "sprite":"trash",
+                     "type":"trash"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":606.751530382112,
+                 "y":128.7649977447
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -291,7 +313,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":58,
+ "nextobjectid":59,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

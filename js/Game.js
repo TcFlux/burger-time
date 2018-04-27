@@ -48,6 +48,10 @@ BurgerBarrage.Game.prototype = {
     this.stove = this.game.add.sprite(stoveObj[0].x, stoveObj[0].y, 'stove');
     this.game.physics.arcade.enable(this.stove);
 
+    //create trash
+    const trashObj = this.findObjectsByType('trash', this.map, 'objectsLayer');
+    this.trash = this.game.add.sprite(trashObj[0].x, trashObj[0].y, 'trash');
+    this.game.physics.arcade.enable(this.trash);
 
     //player
     const playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
@@ -113,31 +117,34 @@ BurgerBarrage.Game.prototype = {
     this.game.physics.arcade.overlap(this.player, this.hole, this.dropBurger, null, this);
     //cook dat meat
     this.game.physics.arcade.overlap(this.player, this.stove, this.cookMeat, null, this);
+    //Garbage!!!
+    this.game.physics.arcade.overlap(this.player, this.trash, this.trashInventory, null, this);
   },
     collect: function(player, item){
       const name = item.key;
       if (!this.inventory[name]) {
         this.inventory[name] = true
         console.log('INVENTORY', this.inventory)
-        item.destroy();
+        // item.destroy();
       }
     },
     dropBurger: function(){
-      if (this.inventory.cookedMeat && this.inventory.bun) {
+      if (this.checkObjEquality(this.inventory, this.goal)) {
         this.inventory = {...startingInventory};
         console.log(this.inventory);
         this.points += 100;
         console.log(this.points);
+        this.generateGoal();
       }
     },
     cookMeat: function(){
       if (this.inventory.uncookedMeat) {
         this.inventory.cookPercent++;
-        console.log(this.inventory.cookPercent)
         if (this.inventory.cookPercent > 100) {
           this.inventory.uncookedMeat = false;
           this.inventory.cookedMeat = true;
           this.inventory.cookPercent = 0;
+          console.log('post cook', this.inventory)
         }
       }
     },
@@ -149,9 +156,9 @@ BurgerBarrage.Game.prototype = {
         bun: true,
         cookedMeat: true
       }
-      console.log(this.goal);
+      console.log("GOAL:", this.goal);
     },
-    checkObjectEquality: function(inventory, goal){
+    checkObjEquality: function(inventory, goal){
       for (var ingredient in goal) {
         if (inventory[ingredient] !== goal[ingredient]) {
           return false
@@ -159,9 +166,10 @@ BurgerBarrage.Game.prototype = {
       }
       return true;
     },
-    checkGoal: function(inventory, goal){
-      if (this.checkObjectEquality(inventory, goal)) {
-        //
+    trashInventory: function(){
+      if (!this.checkObjEquality(this.inventory, startingInventory)) {
+        this.inventory = {...startingInventory};
+        console.log("Post garbeage", this.inventory);
       }
     }
 };
