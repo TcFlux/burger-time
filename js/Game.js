@@ -230,6 +230,7 @@ BurgerBarrage.Game.prototype = {
     trashInventory: function(){
       if (!this.checkObjEquality(this.inventory, startingInventory)) {
         this.inventory = {...startingInventory};
+        this.cookingBar.width = 0;
         this.hideIcons(this.inventoryIcons);
       }
     }
