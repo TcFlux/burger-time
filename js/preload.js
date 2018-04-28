@@ -22,6 +22,7 @@ BurgerBarrage.Preload.prototype = {
     this.load.image('stove', 'assets/images/stove.png')
     this.load.image('trash', 'assets/images/trash.png')
     this.load.image('cookingBar', 'assets/images/preloader-bar.png')
+    this.load.image('creepyGuy', 'assets/images/creepyGuy.png')
   },
   create: function(){
     this.state.start('Game');

@@ -19,6 +19,13 @@ const generateBool = () => {
     return false;
   }
 }
+
+let bouncy = false;
+const bouncify = () => {
+  bouncy = true;
+}
+
+
 BurgerBarrage.Game.prototype = {
   create: function(){
     this.map = this.game.add.tilemap('map');
@@ -29,6 +36,8 @@ BurgerBarrage.Game.prototype = {
     this.backgroundLayer.resizeWorld();
     //points
     this.points = 0;
+    //hp
+    this.HP = 3;
 
     //initialize inventory
     this.inventory = {...startingInventory};
@@ -66,10 +75,26 @@ BurgerBarrage.Game.prototype = {
     const playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
     this.player = this.game.add.sprite(playerObj[0].x, playerObj[0].y, 'player');
     this.game.physics.arcade.enable(this.player);
+
+    //enemies
+    this.enemies = this.game.add.group();
+    this.enemies.enableBody = true;
+    this.createEnemy()
+    this.createEnemy()
+    this.createEnemy()
+    this.createEnemy()
     
     //player  controls
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.cursors.space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+  },
+  createEnemy: function(){
+    const x = (Math.random() * 544) + 32
+    const y = (Math.random() * 320) + 96
+    const enemy = this.enemies.create(x, y, 'creepyGuy');
+    this.game.physics.arcade.enable(enemy);
+    enemy.body.velocity.setTo(100, 100);
+    enemy.body.bounce.set(1);
   },
   createHole: function(){
     const holeObj = this.findObjectsByType('hole', this.map, 'objectsLayer');
@@ -137,6 +162,73 @@ BurgerBarrage.Game.prototype = {
       sprite[key] = element.properties[key];
     })
   },
+  collect: function(player, item){
+    const name = item.key;
+    if (!this.inventory[name]) {
+      if (name === 'uncookedMeat' && this.inventory.cookedMeat === true) {
+      //do nothing
+      } else {
+        this.inventory[name] = true;
+        this.invIcons[name].visible = true;
+      }
+      // item.destroy();
+    }
+  },
+  dropBurger: function(){
+    if (this.checkObjEquality(this.inventory, this.goal)) {
+      this.inventory = {...startingInventory};
+      this.hideIcons(this.inventoryIcons);
+      this.points += 100;
+      console.log(this.points);
+      this.generateGoal();
+    }
+  },
+  cookMeat: function(){
+    if (this.inventory.uncookedMeat) {
+      this.inventory.cookPercent++;
+      this.cookingBar.width = this.cookingBarWidthRatio * this.inventory.cookPercent;
+      if (this.inventory.cookPercent > 100) {
+        this.inventory.uncookedMeat = false;
+        this.inventory.cookedMeat = true;
+        this.inventory.cookPercent = 0;
+        this.cookingBar.width = 0;
+        this.invIcons.uncookedMeat.visible = false
+        this.invIcons.cookedMeat.visible = true
+      }
+    }
+  },
+  generateGoal: function(){
+    this.goal = {
+      lettuce: generateBool(),
+      cheese: generateBool(),
+      ketchup: generateBool(),
+      bun: true,
+      cookedMeat: true
+    }
+    for (var ingredient in this.goal){
+      if (this.goal.hasOwnProperty(ingredient)){
+        this.goal[ingredient] ? this.goalIconsObj[ingredient].visible = true : this.goalIconsObj[ingredient].visible = false;
+      }
+    }
+  },
+  checkObjEquality: function(inventory, goal){
+    for (var ingredient in goal) {
+      if (inventory[ingredient] !== goal[ingredient]) {
+        return false
+      }
+    }
+    return true;
+  },
+  trashInventory: function(){
+    if (!this.checkObjEquality(this.inventory, startingInventory)) {
+      this.inventory = {...startingInventory};
+      this.cookingBar.width = 0;
+      this.hideIcons(this.inventoryIcons);
+    }
+  },
+  takeDamage() {
+    
+  },
   update: function(){
     //Movement
     let speedX = 0;
@@ -161,6 +253,13 @@ BurgerBarrage.Game.prototype = {
     this.player.body.velocity.x = speedX * multiplier;
     //player collision
     this.game.physics.arcade.collide(this.player, this.blockedLayer);
+    //Bouncy
+    if (bouncy) {
+      this.game.physics.arcade.collide(this.player, this.enemies);
+
+    }
+    //enemy collisions with walls
+    this.game.physics.arcade.collide(this.enemies, this.blockedLayer);
     //Pickup items
     this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
     //drop burger in hole
@@ -170,68 +269,4 @@ BurgerBarrage.Game.prototype = {
     //Garbage!!!
     this.game.physics.arcade.overlap(this.player, this.trash, this.trashInventory, null, this);
   },
-    collect: function(player, item){
-      const name = item.key;
-      if (!this.inventory[name]) {
-        if (name === 'uncookedMeat' && this.inventory.cookedMeat === true) {
-        //do nothing
-        } else {
-          this.inventory[name] = true;
-          this.invIcons[name].visible = true;
-        }
-        // item.destroy();
-      }
-    },
-    dropBurger: function(){
-      if (this.checkObjEquality(this.inventory, this.goal)) {
-        this.inventory = {...startingInventory};
-        this.hideIcons(this.inventoryIcons);
-        this.points += 100;
-        console.log(this.points);
-        this.generateGoal();
-      }
-    },
-    cookMeat: function(){
-      if (this.inventory.uncookedMeat) {
-        this.inventory.cookPercent++;
-        this.cookingBar.width = this.cookingBarWidthRatio * this.inventory.cookPercent;
-        if (this.inventory.cookPercent > 100) {
-          this.inventory.uncookedMeat = false;
-          this.inventory.cookedMeat = true;
-          this.inventory.cookPercent = 0;
-          this.cookingBar.width = 0;
-          this.invIcons.uncookedMeat.visible = false
-          this.invIcons.cookedMeat.visible = true
-        }
-      }
-    },
-    generateGoal: function(){
-      this.goal = {
-        lettuce: generateBool(),
-        cheese: generateBool(),
-        ketchup: generateBool(),
-        bun: true,
-        cookedMeat: true
-      }
-      for (var ingredient in this.goal){
-        if (this.goal.hasOwnProperty(ingredient)){
-          this.goal[ingredient] ? this.goalIconsObj[ingredient].visible = true : this.goalIconsObj[ingredient].visible = false;
-        }
-      }
-    },
-    checkObjEquality: function(inventory, goal){
-      for (var ingredient in goal) {
-        if (inventory[ingredient] !== goal[ingredient]) {
-          return false
-        }
-      }
-      return true;
-    },
-    trashInventory: function(){
-      if (!this.checkObjEquality(this.inventory, startingInventory)) {
-        this.inventory = {...startingInventory};
-        this.cookingBar.width = 0;
-        this.hideIcons(this.inventoryIcons);
-      }
-    }
 };
