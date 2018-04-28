@@ -9,7 +9,8 @@ const startingInventory = {
   ketchup: false,
   bun: false,
   cookedMeat: false,
-  cookPercent: 0
+  cookPercent: 0,
+  pokeball: false
 };
 
 const generateBool = () => {
@@ -19,12 +20,16 @@ const generateBool = () => {
     return false;
   }
 }
+const powerUps = ['pokeball', 'health']
+
+const randomX = () => (Math.random() * 544 + 32);
+
+const randomY = () => (Math.random() * 320 + 96);
 
 let bouncy = false;
 const bouncify = () => {
   bouncy = true;
 }
-
 
 BurgerBarrage.Game.prototype = {
   create: function(){
@@ -37,7 +42,7 @@ BurgerBarrage.Game.prototype = {
     //points
     this.points = 0;
     //hp
-    this.HP = 3;
+    this.HP = 100;
 
     //initialize inventory
     this.inventory = {...startingInventory};
@@ -79,19 +84,25 @@ BurgerBarrage.Game.prototype = {
     //enemies
     this.enemies = this.game.add.group();
     this.enemies.enableBody = true;
-    this.createEnemy()
-    this.createEnemy()
-    this.createEnemy()
-    this.createEnemy()
-    
+
     //player  controls
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.cursors.space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.cursors.w = this.input.keyboard.addKey(Phaser.Keyboard.W);
+    this.cursors.a = this.input.keyboard.addKey(Phaser.Keyboard.A);
+    this.cursors.s = this.input.keyboard.addKey(Phaser.Keyboard.S);
+    this.cursors.d = this.input.keyboard.addKey(Phaser.Keyboard.D);
+
+    //projectiles
+    this.projectiles = this.game.add.group();
+    this.projectiles.enableBody = true;
+    this.game.physics.arcade.enable(this.projectiles);
+  },
+  generateRandomPowerUp: function(){
+    this.items.create(randomX(), randomY(), powerUps[Math.floor(Math.random() * powerUps.length)])
   },
   createEnemy: function(){
-    const x = (Math.random() * 544) + 32
-    const y = (Math.random() * 320) + 96
-    const enemy = this.enemies.create(x, y, 'creepyGuy');
+    const enemy = this.enemies.create(randomX(), randomY(), 'creepyGuy');
     this.game.physics.arcade.enable(enemy);
     enemy.body.velocity.setTo(100, 100);
     enemy.body.bounce.set(1);
@@ -124,7 +135,8 @@ BurgerBarrage.Game.prototype = {
       cookedMeat: this.inventoryIcons.children[5],
       lettuce: this.inventoryIcons.children[3],
       cheese: this.inventoryIcons.children[2],
-      ketchup: this.inventoryIcons.children[4]
+      ketchup: this.inventoryIcons.children[4],
+      pokeball: this.inventoryIcons.children[6]
     }
   },
   hideIcons: function(iconSet){
@@ -164,14 +176,20 @@ BurgerBarrage.Game.prototype = {
   },
   collect: function(player, item){
     const name = item.key;
-    if (!this.inventory[name]) {
+    if (name === 'health') {
+      item.destroy();
+      this.HP += 15;
+    }
+    else if (!this.inventory[name]) {
       if (name === 'uncookedMeat' && this.inventory.cookedMeat === true) {
       //do nothing
       } else {
         this.inventory[name] = true;
         this.invIcons[name].visible = true;
+        if (name === 'pokeball') {
+          item.destroy();
+        }
       }
-      // item.destroy();
     }
   },
   dropBurger: function(){
@@ -181,6 +199,8 @@ BurgerBarrage.Game.prototype = {
       this.points += 100;
       console.log(this.points);
       this.generateGoal();
+      this.createEnemy();
+      this.generateRandomPowerUp();
     }
   },
   cookMeat: function(){
@@ -227,39 +247,62 @@ BurgerBarrage.Game.prototype = {
     }
   },
   takeDamage() {
-    
+    this.HP--;
+    console.log('HP:', this.HP);
+    if (this.HP === 0) {
+      alert(`GAME OVER!!!! Your score was ${this.points}`)
+    }
+  },
+  throw: function(){
+    if (this.inventory.pokeball){
+      this.inventory.pokeball = false;
+      this.invIcons.pokeball.visible = false;
+      const pokeball = this.projectiles.create(this.player.x, this.player.y, 'pokeball');
+      this.game.physics.arcade.enable(pokeball);
+      this.game.physics.arcade.moveToPointer(pokeball, 300);
+      setTimeout(() => {
+        pokeball.destroy();
+      }, 3000);
+    }
+  },
+  enemyHit: function(enemy, projectile){
+    enemy.destroy();
+    projectile.destroy();
+  },
+  destroyProjectile: function(projectile, layer){
+    console.log(projectile)
+    console.log(layer)
+    projectile.destroy();
   },
   update: function(){
     //Movement
     let speedX = 0;
     let speedY = 0;
-    if (this.cursors.up.isDown) {
+    if (this.cursors.w.isDown) {
       speedY -= 100;
     }
-    if (this.cursors.down.isDown) {
+    if (this.cursors.s.isDown) {
       speedY += 100;
     }
-    if (this.cursors.left.isDown) {
+    if (this.cursors.a.isDown) {
       speedX -= 100;
     }
-    if (this.cursors.right.isDown) {
+    if (this.cursors.d.isDown) {
       speedX += 100;
     }
-    
-    if (this.cursors.space.isDown) {
-      //Power up!!!!
+    if (this.game.input.activePointer.isDown) {
+      this.throw();
     }
     this.player.body.velocity.y = speedY * multiplier;
     this.player.body.velocity.x = speedX * multiplier;
     //player collision
     this.game.physics.arcade.collide(this.player, this.blockedLayer);
-    //Bouncy
-    if (bouncy) {
-      this.game.physics.arcade.collide(this.player, this.enemies);
-
-    }
     //enemy collisions with walls
     this.game.physics.arcade.collide(this.enemies, this.blockedLayer);
+    //pokeball with enemies
+    this.game.physics.arcade.collide(this.enemies, this.projectiles, this.enemyHit, null, this);
+    //pokeball with walls
+    // this.game.physics.arcade.collide(this.projectiles, this.blockedLayer, this.destroyProjectile, null, this);
     //Pickup items
     this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
     //drop burger in hole
@@ -268,5 +311,15 @@ BurgerBarrage.Game.prototype = {
     this.game.physics.arcade.overlap(this.player, this.stove, this.cookMeat, null, this);
     //Garbage!!!
     this.game.physics.arcade.overlap(this.player, this.trash, this.trashInventory, null, this);
+    //Ouch!
+    this.game.physics.arcade.overlap(this.player, this.enemies, this.takeDamage, null, this);
+    //Bouncy
+    if (bouncy) {
+      this.game.physics.arcade.collide(this.player, this.enemies, this.takeDamage, null, this);
+    }
+    //enemy bounce
+    if (this.points > 500) {
+      this.game.physics.arcade.collide(this.enemies, this.enemies);
+    }
   },
 };
