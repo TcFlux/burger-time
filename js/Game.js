@@ -20,7 +20,7 @@ const generateBool = () => {
     return false;
   }
 }
-const powerUps = ['pokeball', 'health']
+const powerUps = ['pokeball', 'health', 'speedBoost']
 
 const randomX = () => (Math.random() * 544 + 32);
 
@@ -30,6 +30,8 @@ let bouncy = false;
 const bouncify = () => {
   bouncy = true;
 }
+
+let enemyMultiplier = 1;
 
 BurgerBarrage.Game.prototype = {
   create: function(){
@@ -98,13 +100,17 @@ BurgerBarrage.Game.prototype = {
     this.projectiles.enableBody = true;
     this.game.physics.arcade.enable(this.projectiles);
   },
+  codify: function(){
+    this.cody = this.game.add.sprite(200, 200, 'cody');
+    this.game.physics.arcade.enable(this.cody);
+  },
   generateRandomPowerUp: function(){
     this.items.create(randomX(), randomY(), powerUps[Math.floor(Math.random() * powerUps.length)])
   },
   createEnemy: function(){
     const enemy = this.enemies.create(randomX(), randomY(), 'creepyGuy');
     this.game.physics.arcade.enable(enemy);
-    enemy.body.velocity.setTo(100, 100);
+    enemy.body.velocity.setTo(100 * enemyMultiplier, 100 * enemyMultiplier);
     enemy.body.bounce.set(1);
   },
   createHole: function(){
@@ -136,7 +142,8 @@ BurgerBarrage.Game.prototype = {
       lettuce: this.inventoryIcons.children[3],
       cheese: this.inventoryIcons.children[2],
       ketchup: this.inventoryIcons.children[4],
-      pokeball: this.inventoryIcons.children[6]
+      pokeball: this.inventoryIcons.children[6],
+      speedBoost: this.inventoryIcons.children[7]
     }
   },
   hideIcons: function(iconSet){
@@ -186,10 +193,21 @@ BurgerBarrage.Game.prototype = {
       } else {
         this.inventory[name] = true;
         this.invIcons[name].visible = true;
-        if (name === 'pokeball') {
-          item.destroy();
+        if (powerUps.includes(name)) {
+          this.invokePowerUp(item, name)
         }
       }
+    }
+  },
+  invokePowerUp: function(item, name){
+    item.destroy();
+    if (name === 'speedBoost') {
+      multiplier = 4;
+      setTimeout(() => {
+        multiplier = 2
+        this.invIcons.speedBoost.visible = false;
+        console.log("end")
+      }, 10000);
     }
   },
   dropBurger: function(){
@@ -201,6 +219,10 @@ BurgerBarrage.Game.prototype = {
       this.generateGoal();
       this.createEnemy();
       this.generateRandomPowerUp();
+      enemyMultiplier += 0.1;
+      if (this.points === 1000) {
+        this.codify();
+      }
     }
   },
   cookMeat: function(){
@@ -295,6 +317,13 @@ BurgerBarrage.Game.prototype = {
     }
     this.player.body.velocity.y = speedY * multiplier;
     this.player.body.velocity.x = speedX * multiplier;
+    if (this.cody) {
+      this.game.physics.arcade.moveToXY(this.cody, this.player.x - 48, this.player.y + 20, 100)
+    }
+    // //cody collide
+    this.game.physics.arcade.collide(this.cody, this.blockedLayer);
+    // //cody collide enemies
+    this.game.physics.arcade.collide(this.enemies, this.cody);
     //player collision
     this.game.physics.arcade.collide(this.player, this.blockedLayer);
     //enemy collisions with walls

@@ -594,6 +594,28 @@
                  "width":32,
                  "x":369.346283783784,
                  "y":530.146959459459
+                }, 
+                {
+                 "gid":25,
+                 "height":32,
+                 "id":84,
+                 "name":"speedBoost",
+                 "properties":
+                    {
+                     "sprite":"speedBoost",
+                     "type":"inventoryIcon"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":368.290540540541,
+                 "y":529.091216216216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -601,7 +623,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":84,
+ "nextobjectid":87,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
