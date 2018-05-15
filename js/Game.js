@@ -206,7 +206,6 @@ BurgerBarrage.Game.prototype = {
       setTimeout(() => {
         multiplier = 2
         this.invIcons.speedBoost.visible = false;
-        console.log("end")
       }, 10000);
     }
   },
@@ -215,7 +214,6 @@ BurgerBarrage.Game.prototype = {
       this.inventory = {...startingInventory};
       this.hideIcons(this.inventoryIcons);
       this.points += 100;
-      console.log(this.points);
       this.generateGoal();
       this.createEnemy();
       this.generateRandomPowerUp();
@@ -270,7 +268,6 @@ BurgerBarrage.Game.prototype = {
   },
   takeDamage() {
     this.HP--;
-    console.log('HP:', this.HP);
     if (this.HP === 0) {
       alert(`GAME OVER!!!! Your score was ${this.points}`)
     }
@@ -292,8 +289,6 @@ BurgerBarrage.Game.prototype = {
     projectile.destroy();
   },
   destroyProjectile: function(projectile, layer){
-    console.log(projectile)
-    console.log(layer)
     projectile.destroy();
   },
   update: function(){
@@ -350,5 +345,7 @@ BurgerBarrage.Game.prototype = {
     if (this.points > 500) {
       this.game.physics.arcade.collide(this.enemies, this.enemies);
     }
-  },
+    document.getElementById('hp').innerHTML = this.HP;
+    document.getElementById('score').innerHTML = this.points;
+  }
 };
